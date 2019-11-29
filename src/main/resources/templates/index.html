@@ -1,0 +1,29 @@
+<form action="/filter" method="get" xmlns:th="http://www.w3.org/1999/xhtml">
+    Filter:
+    <input type="text" name="key" th:value="${key}">
+    <input type="submit" value="Find">
+</form>
+<table style="width:100%" border="1" xmlns:th="http://www.w3.org/1999/xhtml">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Created</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${products.empty}">
+        <td colspan="5">No products go away pidoras</td>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td><span th:text="${product.id}"> Id </span></td>
+        <td><span th:text="${product.name}"> Name </span></td>
+        <td><span th:text="${product.price}"> Price </span></td>
+        <td><span th:text="${product.created}"> Created </span></td>
+        <td><a th:href="@{'/delete?id=' + ${product.id}}">Delete</a> </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/add_product">Add product</a>
